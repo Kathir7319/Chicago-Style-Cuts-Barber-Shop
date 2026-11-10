@@ -1,11 +1,61 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, MapPin, Star, Clock, Check, Scissors, Users, Calendar, ArrowRight, ShieldCheck, Sparkles, Navigation } from 'lucide-react';
+import { Phone, MapPin, Star, Clock, Check, Scissors, Users, Calendar, ArrowRight, ShieldCheck, Sparkles, Navigation, ChevronLeft, ChevronRight, CheckCircle2 } from 'lucide-react';
 import { shopInfo, servicesData, barbersData, reviewsData } from '../data/barbershopData';
 import Logo from '../components/Logo';
 import HoursStatusBadge from '../components/HoursStatusBadge';
 
 export default function HomePage({ onOpenBooking }) {
+  // Available Official Shop Emblems
+  const emblems = [
+    {
+      id: 'artisan',
+      name: 'Master Artisan Crest',
+      tag: 'Official Shop Emblem',
+      src: '/official-shop-emblem.jpg',
+      isImage: true,
+      subtitle: 'Brushed Gold & Ruby Vintage Emblem',
+      description: 'Ultra-luxurious circular crest with illuminated barber pole, crossed straight razors, and Chicago stars.'
+    },
+    {
+      id: 'heritage',
+      name: 'Heritage Razor & Shears',
+      tag: 'Classic Vector',
+      src: '/emblem-heritage.svg',
+      isImage: false,
+      subtitle: 'Fine Gold Filigree & Crossed Cutters',
+      description: 'Crisp vector circular badge with hollow-ground straight razor and ergonomic shears.'
+    },
+    {
+      id: 'gentleman',
+      name: 'The Gentleman’s Silhouette',
+      tag: 'Modern Dapper',
+      src: '/emblem-gentleman.svg',
+      isImage: false,
+      subtitle: 'Tailored Fade & Sculpted Beard',
+      description: 'Clean gentleman profile medallion celebrating Cary’s sharpest fades and beard grooming.'
+    },
+    {
+      id: 'shield',
+      name: 'Royal Barber Shield',
+      tag: 'Heraldic Badge',
+      src: '/emblem-crest.svg',
+      isImage: false,
+      subtitle: 'Chicago Colors & Barber Pole Crest',
+      description: 'Heraldic shield with traditional diagonal stripes and crossed artisan tools.'
+    }
+  ];
+
+  const [activeEmblemIdx, setActiveEmblemIdx] = useState(0);
+  const activeEmblem = emblems[activeEmblemIdx];
+
+  const handleNextEmblem = () => {
+    setActiveEmblemIdx((prev) => (prev + 1) % emblems.length);
+  };
+
+  const handlePrevEmblem = () => {
+    setActiveEmblemIdx((prev) => (prev - 1 + emblems.length) % emblems.length);
+  };
   return (
     <div className="space-y-16 lg:space-y-24 pb-16">
 
@@ -90,33 +140,90 @@ export default function HomePage({ onOpenBooking }) {
 
             {/* Right Column: Barber Shop Logo Emblem Showcase Card */}
             <div className="lg:col-span-5 flex flex-col items-center justify-center">
-              <div className="relative p-6 sm:p-8 rounded-3xl bg-[#15191e]/90 border border-[#2d3239] shadow-2xl backdrop-blur-md max-w-md w-full text-center group hover:border-amber-500/40 transition-all duration-300">
+              <div className="relative p-6 sm:p-7 rounded-3xl bg-[#15191e]/95 border border-[#2d3239] shadow-2xl backdrop-blur-md max-w-md w-full text-center group hover:border-amber-500/40 transition-all duration-300">
                 {/* Vintage Barber Pole Ribbon accent top */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-1.5 barber-pole-stripes rounded-b-md"></div>
 
-                <div className="pt-2 pb-4 flex justify-center">
-                  <img
-                    src="/logo.svg"
-                    alt="Chicago Style Cuts Emblem Logo"
-                    className="w-56 h-56 sm:w-64 sm:h-64 drop-shadow-[0_20px_25px_rgba(0,0,0,0.8)] transform transition-transform duration-500 group-hover:scale-105"
-                  />
+                {/* Emblem Switcher Header / Tag */}
+                <div className="flex items-center justify-between pt-1 pb-3 text-xs border-b border-white/5">
+                  <span className="inline-flex items-center gap-1.5 text-amber-400 font-semibold">
+                    <Sparkles className="w-3.5 h-3.5" />
+                    <span>{activeEmblem.tag}</span>
+                  </span>
+                  <span className="text-[11px] text-gray-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/5">
+                    {activeEmblemIdx + 1} of {emblems.length} styles
+                  </span>
                 </div>
 
-                <div className="space-y-2 border-t border-white/10 pt-4">
-                  <div className="inline-flex items-center gap-1 text-amber-400 text-sm font-semibold">
-                    <Sparkles className="w-4 h-4" />
-                    <span>Official Shop Emblem</span>
+                {/* Emblem Display with Left/Right Arrows */}
+                <div className="relative pt-4 pb-3 flex items-center justify-center">
+                  {/* Prev Button */}
+                  <button
+                    onClick={handlePrevEmblem}
+                    className="absolute left-0 z-10 p-2 rounded-full bg-black/60 hover:bg-black/90 text-gray-400 hover:text-white border border-white/10 hover:border-amber-400/40 transition-all shadow-md active:scale-95"
+                    aria-label="Previous emblem"
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                  </button>
+
+                  {/* Emblem Asset */}
+                  <div className="w-56 h-56 sm:w-64 sm:h-64 flex items-center justify-center transition-all duration-300">
+                    <img
+                      key={activeEmblem.id}
+                      src={activeEmblem.src}
+                      alt={activeEmblem.name}
+                      className={`w-52 h-52 sm:w-60 sm:h-60 object-contain drop-shadow-[0_16px_25px_rgba(0,0,0,0.85)] transform transition-transform duration-500 group-hover:scale-105 ${
+                        activeEmblem.isImage ? 'rounded-full border-2 border-amber-500/30' : ''
+                      }`}
+                    />
                   </div>
+
+                  {/* Next Button */}
+                  <button
+                    onClick={handleNextEmblem}
+                    className="absolute right-0 z-10 p-2 rounded-full bg-black/60 hover:bg-black/90 text-gray-400 hover:text-white border border-white/10 hover:border-amber-400/40 transition-all shadow-md active:scale-95"
+                    aria-label="Next emblem"
+                  >
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
+
+                {/* Emblem Selector Dots / Quick Buttons */}
+                <div className="flex items-center justify-center gap-1.5 py-2">
+                  {emblems.map((emb, idx) => (
+                    <button
+                      key={emb.id}
+                      onClick={() => setActiveEmblemIdx(idx)}
+                      className={`h-2 rounded-full transition-all ${
+                        activeEmblemIdx === idx
+                          ? 'w-6 bg-amber-400'
+                          : 'w-2 bg-white/20 hover:bg-white/40'
+                      }`}
+                      aria-label={`Select ${emb.name}`}
+                      title={emb.name}
+                    />
+                  ))}
+                </div>
+
+                {/* Emblem Information */}
+                <div className="space-y-1.5 border-t border-white/10 pt-3">
                   <h3 className="font-display font-bold text-white text-lg">
-                    Chicago Style Cuts Barber Shop
+                    {activeEmblem.name}
                   </h3>
-                  <p className="text-xs text-gray-400">
-                    750 E Chatham St, Cary, NC • 11 Full Service Chairs
+                  <p className="text-xs text-amber-400/90 font-medium">
+                    {activeEmblem.subtitle}
+                  </p>
+                  <p className="text-[11px] text-gray-400 max-w-xs mx-auto leading-relaxed">
+                    {activeEmblem.description}
                   </p>
                 </div>
 
+                {/* Bottom Card Footer */}
                 <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-xs text-gray-300">
-                  <span className="font-semibold text-emerald-400">Walk-Ins Welcome</span>
+                  <span className="font-semibold text-emerald-400 flex items-center gap-1">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    Walk-Ins Welcome
+                  </span>
                   <button
                     onClick={onOpenBooking}
                     className="text-amber-400 hover:text-amber-300 font-semibold underline underline-offset-4"
