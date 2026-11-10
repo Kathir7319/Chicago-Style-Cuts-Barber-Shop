@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5D77F" />
+      <stop offset="50%" stop-color="#D4AF37" />
+      <stop offset="100%" stop-color="#AA8214" />
+    </linearGradient>
+    
+    <linearGradient id="bladeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="50%" stop-color="#CBD5E1" />
+      <stop offset="100%" stop-color="#64748B" />
+    </linearGradient>
+
+    <linearGradient id="darkBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1A1D20" />
+      <stop offset="100%" stop-color="#0B0D0F" />
+    </linearGradient>
+
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+
+    <!-- Path for text along curve -->
+    <path id="textArcTop" d="M 90,250 A 160,160 0 1,1 410,250" fill="none" />
+    <path id="textArcBottom" d="M 400,250 A 150,150 0 0,1 100,250" fill="none" />
+  </defs>
+
+  <!-- Outer Ring with Gold Border -->
+  <circle cx="250" cy="250" r="236" fill="url(#darkBgGrad)" stroke="url(#goldGrad)" stroke-width="7" filter="url(#shadow)" />
+  <circle cx="250" cy="250" r="222" fill="none" stroke="#D4AF37" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.8" />
+  <circle cx="250" cy="250" r="214" fill="none" stroke="url(#goldGrad)" stroke-width="2" />
+
+  <!-- Inner Circle with Dark Texture -->
+  <circle cx="250" cy="250" r="162" fill="#121518" stroke="#D4AF37" stroke-width="3" />
+
+  <!-- Barber Pole Striped Accent (Center Vertical Core) -->
+  <g transform="translate(236, 120)">
+    <rect x="0" y="0" width="28" height="150" rx="14" fill="#0E1013" stroke="#D4AF37" stroke-width="2" />
+    <clipPath id="poleClip">
+      <rect x="2" y="2" width="24" height="146" rx="12" />
+    </clipPath>
+    <g clip-path="url(#poleClip)">
+      <!-- Stripes -->
+      <polygon points="0,0 28,28 28,14 0,-14" fill="#C92A2A" />
+      <polygon points="0,20 28,48 28,34 0,6" fill="#FFFFFF" />
+      <polygon points="0,40 28,68 28,54 0,26" fill="#1971C2" />
+      <polygon points="0,60 28,88 28,74 0,46" fill="#FFFFFF" />
+      <polygon points="0,80 28,108 28,94 0,66" fill="#C92A2A" />
+      <polygon points="0,100 28,128 28,114 0,86" fill="#FFFFFF" />
+      <polygon points="0,120 28,148 28,134 0,106" fill="#1971C2" />
+      <polygon points="0,140 28,168 28,154 0,126" fill="#FFFFFF" />
+    </g>
+    <!-- Pole Caps -->
+    <ellipse cx="14" cy="4" rx="12" ry="4" fill="url(#goldGrad)" />
+    <ellipse cx="14" cy="146" rx="12" ry="4" fill="url(#goldGrad)" />
+  </g>
+
+  <!-- Crossed Barber Tools -->
+  <!-- Scissors (Crossing from top-left to bottom-right) -->
+  <g transform="translate(250, 195) rotate(-35) translate(-250, -195)">
+    <!-- Scissor Blade 1 -->
+    <path d="M 245,100 L 252,195 L 247,205 L 243,195 Z" fill="url(#bladeGrad)" stroke="#111" stroke-width="0.5" />
+    <circle cx="248" cy="200" r="4" fill="#D4AF37" stroke="#111" stroke-width="1" />
+    <!-- Scissor Handle / Bows -->
+    <path d="M 245,205 Q 235,240 230,265 A 16,16 0 1,0 248,280 Q 250,250 250,205 Z" fill="none" stroke="url(#goldGrad)" stroke-width="5" stroke-linecap="round" />
+  </g>
+
+  <!-- Straight Razor (Crossing from top-right to bottom-left) -->
+  <g transform="translate(250, 195) rotate(35) translate(-250, -195)">
+    <!-- Razor Blade -->
+    <path d="M 248,95 C 248,95 260,110 260,185 L 248,195 Z" fill="url(#bladeGrad)" stroke="#333" stroke-width="0.8" />
+    <line x1="255" y1="110" x2="255" y2="180" stroke="#FFF" stroke-width="1" opacity="0.6" />
+    <!-- Pivot Pin -->
+    <circle cx="248" cy="195" r="4.5" fill="url(#goldGrad)" stroke="#000" stroke-width="1" />
+    <!-- Razor Scales (Handle) -->
+    <path d="M 248,195 C 244,225 240,255 242,285 C 243,292 249,292 250,285 C 251,255 251,225 248,195 Z" fill="#1C1814" stroke="url(#goldGrad)" stroke-width="2.5" />
+  </g>
+
+  <!-- Ribbon Banner: "BARBER SHOP" -->
+  <g filter="url(#shadow)">
+    <!-- Ribbon Tails -->
+    <polygon points="55,305 85,275 85,320 55,335" fill="#8C1C1C" />
+    <polygon points="445,305 415,275 415,320 445,335" fill="#8C1C1C" />
+    <!-- Main Ribbon Center -->
+    <rect x="75" y="278" width="350" height="52" rx="6" fill="#C92A2A" stroke="url(#goldGrad)" stroke-width="3" />
+    <!-- Golden Accent Lines on Ribbon -->
+    <line x1="85" y1="284" x2="415" y2="284" stroke="url(#goldGrad)" stroke-width="1" />
+    <line x1="85" y1="324" x2="415" y2="324" stroke="url(#goldGrad)" stroke-width="1" />
+    <!-- Ribbon Text -->
+    <text x="250" y="315" font-family="'Cinzel', 'Oswald', serif" font-weight="900" font-size="28" fill="#FFFFFF" text-anchor="middle" letter-spacing="6">
+      BARBER SHOP
+    </text>
+  </g>
+
+  <!-- Arc Text Top: "CHICAGO STYLE CUTS" -->
+  <text font-family="'Cinzel', 'Oswald', serif" font-weight="800" font-size="25.5" fill="url(#goldGrad)" letter-spacing="4.5">
+    <textPath href="#textArcTop" startOffset="50%" text-anchor="middle">
+      CHICAGO STYLE CUTS
+    </textPath>
+  </text>
+
+  <!-- Chicago 6-Pointed Red Stars (Flanking the Emblem) -->
+  <!-- Left Star -->
+  <g transform="translate(95, 230) scale(0.65)">
+    <polygon points="25,0 30,15 45,15 33,25 38,40 25,30 12,40 17,25 5,15 20,15" fill="#C92A2A" stroke="url(#goldGrad)" stroke-width="1.5" />
+  </g>
+  <!-- Right Star -->
+  <g transform="translate(375, 230) scale(0.65)">
+    <polygon points="25,0 30,15 45,15 33,25 38,40 25,30 12,40 17,25 5,15 20,15" fill="#C92A2A" stroke="url(#goldGrad)" stroke-width="1.5" />
+  </g>
+
+  <!-- Bottom Details: "CARY, NC • 11 CHAIRS • EST. 2026" -->
+  <text x="250" y="375" font-family="'Inter', sans-serif" font-weight="700" font-size="13" fill="#D4AF37" text-anchor="middle" letter-spacing="3.5">
+    CARY, NC  ★  11 CHAIRS  ★  EST. 2026
+  </text>
+  <text x="250" y="405" font-family="'Inter', sans-serif" font-weight="600" font-size="11" fill="#94A3B8" text-anchor="middle" letter-spacing="2">
+    750 E CHATHAM ST • WALK-INS WELCOME
+  </text>
+
+  <!-- Mini Bottom Chicago Stars -->
+  <circle cx="205" cy="425" r="2.5" fill="#C92A2A" />
+  <circle cx="250" cy="425" r="3.5" fill="url(#goldGrad)" />
+  <circle cx="295" cy="425" r="2.5" fill="#1971C2" />
+</svg>

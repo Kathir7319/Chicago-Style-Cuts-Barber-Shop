@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: #0b0d0f;
+  color: #e5e7eb;
+  overflow-x: hidden;
+}
+
+/* Custom Barber Pole Stripe Animation */
+@keyframes barberPole {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+.barber-pole-stripes {
+  background: repeating-linear-gradient(
+    45deg,
+    #c92a2a,
+    #c92a2a 12px,
+    #ffffff 12px,
+    #ffffff 20px,
+    #1971c2 20px,
+    #1971c2 32px,
+    #ffffff 32px,
+    #ffffff 40px
+  );
+  background-size: 60px 60px;
+  animation: barberPole 3s linear infinite;
+}
+
+.subtle-barber-border {
+  border-image: repeating-linear-gradient(
+    45deg,
+    #c92a2a,
+    #c92a2a 8px,
+    #ffffff 8px,
+    #ffffff 14px,
+    #1971c2 14px,
+    #1971c2 22px,
+    #ffffff 22px,
+    #ffffff 28px
+  ) 8;
+}
+
+/* Glassmorphism card utility */
+.barber-card {
+  background: rgba(22, 26, 30, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.barber-card-hover {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.barber-card-hover:hover {
+  transform: translateY(-4px);
+  border-color: rgba(212, 175, 55, 0.4);
+  box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.5), 0 0 16px -2px rgba(212, 175, 55, 0.15);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0d0f12;
+}
+::-webkit-scrollbar-thumb {
+  background: #252a30;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #39424c;
+}
